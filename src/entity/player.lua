@@ -6,7 +6,15 @@ player.asset = {
   move = love.graphics.newImage("entity/assets/player.png")
 }
 
+player.quad = {}
+player.quad[1] = love.graphics.newQuad(0,0,50,100,200,100)
+player.quad[2] = love.graphics.newQuad(50,0,50,100,200,100)
+player.quad[3] = love.graphics.newQuad(100,0,50,100,200,100)
+player.quad[4] = love.graphics.newQuad(150,0,50,100,200,100)
+
 local ch = "";
+local walk_swtich = .15
+local walk_distance = .5
 function player.new(x,y)
   local temp = {}
   temp.load = player.load
@@ -20,24 +28,46 @@ function player.new(x,y)
   temp.x = x
   temp.y = y
   temp.direction = ""
+  temp.movement = 1
 
   return temp
 end
 
 function player:load()
-
+  self.walk_time = 0;
 end
 
 function player:draw()
-  love.graphics.draw(player.asset.move,self.x,self.y)
-  love.graphics.print(self.direction,200,500)
+  love.graphics.draw(player.asset.move,player.quad[self.movement],self.x,self.y)
+  love.graphics.print(self.walk_time,200,500)
 end
 
 function player:update(dt)
   if (self.direction == "right") then
-    self.x = (self.x + 1)
+    self.walk_time = self.walk_time + dt
+    self.x = (self.x + walk_distance)
+    if(self.walk_time > walk_swtich) then
+      if (self.movement >= 4) then
+        self.movement = 1
+      else
+        self.movement = (self.movement + 1)
+      end
+      self.walk_time = 0
+    end
   elseif (self.direction == "left") then
-    self.x = (self.x - 1)
+    self.walk_time = self.walk_time + dt
+    self.x = (self.x - walk_distance)
+    if(self.walk_time > walk_swtich) then
+      if (self.movement >= 4) then
+        self.movement = 1
+      else
+        self.movement = (self.movement + 1)
+      end
+      self.walk_time = 0
+    end
+  else
+    self.walk_time = 0
+    self.movement = 1
   end
 end
 
