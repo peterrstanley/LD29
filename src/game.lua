@@ -1,11 +1,12 @@
 require("entity/player")
+require("entity/machine")
 
 game = {}
 local levels = {"1"}
 local cur_level = 1
 game.levels = {}
 
-game.user = player.new(400,200)
+game.user = player.new(20,475)
 
 for _,v in ipairs(levels) do
   require("game/level"..v.."/level"..v)
