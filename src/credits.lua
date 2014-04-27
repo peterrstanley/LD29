@@ -1,9 +1,11 @@
-local credits = {}
+credits = {}
 
 function credits.load()
 end
 
 function credits.draw()
+  love.graphics.print("Credits",400,100)
+  love.graphics.print("Developed By: Peter R Stanley",200,150)
 end
 
 function credits.update(dt)
