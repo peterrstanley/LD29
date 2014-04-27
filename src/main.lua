@@ -19,12 +19,16 @@ function love.draw()
       love.graphics.draw(imgs[i],0,0,0)
     end
     love.graphics.print("Utopia Underground!!",200,100)
-    love.graphics.print("Credits",700,550)
+    love.graphics.print("New Game",50,400)
+    love.graphics.print("Settings",50,420)
+    love.graphics.print("Credits",50,440)
+    love.graphics.print("Quit",50,460)
   elseif (state == "game") then
    game.draw()
   elseif (state == "credits") then
    credits.draw()
   end
+  love.graphics.print(state,10,10)
 end
 
 function love.update(dt)
@@ -47,7 +51,7 @@ end
 
 function love.keyreleased(key,unicode)
   if(state == "main") then
-    state = "credits"
+    
   elseif (state == "game") then
     game.keyreleased(key,unicode)
   elseif (state == "credits") then
@@ -66,6 +70,15 @@ end
 
 function love.mousereleased(x,y,button)
   if(state == "main") then
+    if(x > 50 and x < 150 and y > 400 and y < 415) then
+      state = "game"
+    elseif(x > 50 and x < 150 and y > 420 and y < 435) then
+      state = "settings"
+    elseif(x > 50 and x < 150 and y > 440 and y < 455) then
+      state = "credits"
+    elseif(x > 50 and x < 150 and y > 460 and y < 475) then
+      love.event.quit()
+    end
   elseif (state == "game") then
     game.mousereleased(x,y,button)
   elseif (state == "credits") then
