@@ -24,6 +24,8 @@ function player.new(x,y)
   temp.keyreleased = player.keyreleased
   temp.mousepressed = player.mousepressed
   temp.mousereleased = player.released
+  temp.getRepairValue = player.getRepairValue
+  temp.setRepairValue = player.setRepairValue
 
   temp.x = x
   temp.y = y
@@ -39,7 +41,7 @@ end
 
 function player:draw()
   love.graphics.draw(player.asset.move,player.quad[self.movement],self.x,self.y)
-  love.graphics.print(self.walk_time,200,500)
+  --love.graphics.print(self.walk_time,200,500)
 end
 
 function player:update(dt)
