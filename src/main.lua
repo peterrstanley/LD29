@@ -1,7 +1,7 @@
 require("credits")
 require("game")
 
-local state = "main"
+state = "main"
 
 function love.load()
   img_fn = {"main"}
