@@ -1,5 +1,6 @@
 require("credits")
 require("game")
+require("setting")
 
 state = "main"
 
@@ -8,6 +9,7 @@ function love.load()
   imgs = {}
   credits.load()
   game.load()
+  setting.load()
   for _,v in ipairs(img_fn) do
     imgs[v] = love.graphics.newImage("assets/"..v..".png")
   end 
@@ -25,6 +27,8 @@ function love.draw()
     love.graphics.print("Quit",50,460)
   elseif (state == "game") then
    game.draw()
+  elseif (state == "setting") then
+    setting.draw()
   elseif (state == "credits") then
    credits.draw()
   end
@@ -35,6 +39,8 @@ function love.update(dt)
   if(state == "main") then
   elseif (state == "game") then
    game.update(dt)
+  elseif (state == "setting") then
+    setting.update(dt)
   elseif (state == "credits") then
    credits.update(dt)
   end
@@ -44,6 +50,8 @@ function love.keypressed(key,unicode)
   if(state == "main") then
   elseif (state == "game") then
     game.keypressed(key,unicode)
+  elseif (state == "setting") then
+    setting.keypressed(key,unicode)
   elseif (state == "credits") then
     credits.keypressed(key,unicode)
   end
@@ -54,6 +62,8 @@ function love.keyreleased(key,unicode)
     
   elseif (state == "game") then
     game.keyreleased(key,unicode)
+  elseif (state == "setting") then
+    setting.keyreleased(key,unicode)
   elseif (state == "credits") then
     credits.keyreleased(key,unicode)
   end
@@ -63,6 +73,8 @@ function love.mousepressed(x,y,button)
   if(state == "main") then
   elseif (state == "game") then
     game.mousepressed(x,y,button)
+  elseif (state == "setting") then
+    setting.mousepressed(x,y,button)
   elseif (state == "credits") then
     credits.mousepressed(x,y,button)
   end
@@ -73,7 +85,7 @@ function love.mousereleased(x,y,button)
     if(x > 50 and x < 150 and y > 400 and y < 415) then
       state = "game"
     elseif(x > 50 and x < 150 and y > 420 and y < 435) then
-      state = "settings"
+      state = "setting"
     elseif(x > 50 and x < 150 and y > 440 and y < 455) then
       state = "credits"
     elseif(x > 50 and x < 150 and y > 460 and y < 475) then
@@ -81,6 +93,8 @@ function love.mousereleased(x,y,button)
     end
   elseif (state == "game") then
     game.mousereleased(x,y,button)
+  elseif (state == "setting") then
+    setting.mousereleased(x,y,button)
   elseif (state == "credits") then
     credits.mousereleased(x,y,button)
   end
