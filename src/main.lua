@@ -20,7 +20,9 @@ function love.draw()
     for i,v in pairs(imgs) do
       love.graphics.draw(imgs[i],0,0,0)
     end
-    love.graphics.print("Utopia Underground!!",200,100)
+    love.graphics.print("Utopia Underground!!",600,100)
+
+    love.graphics.print("Goal: Fix all the machines underground to win.",50,375)
     love.graphics.print("New Game",50,400)
     love.graphics.print("Settings",50,420)
     love.graphics.print("Credits",50,440)
