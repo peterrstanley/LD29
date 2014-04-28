@@ -4,6 +4,10 @@ machine.asset = love.graphics.newImage("entity/assets/machine.png")
 
 function machine.new(x,y)
   local temp = {}
+
+  temp.x = x
+  temp.y = y
+  temp.health = 0
   temp.load = machine.load
   temp.draw = machine.draw
   temp.update = machine.update
@@ -13,10 +17,7 @@ function machine.new(x,y)
   temp.mousereleased = machine.mousereleased
   temp.inRange = machine.inRange
   temp.increaseHealth = machine.increaseHealth
-  
-  temp.x = x
-  temp.y = y
-  temp.health = 0
+
   return temp
 end
 
@@ -38,7 +39,9 @@ function machine:keypressed(key,unicode)
 end
 
 function machine:keyreleased(key,unicode)
-
+  if (key == " " and self:inRange(game.user.x) and self.health < 100) then
+    self.health = self.health + game.user:getRepairValue()
+  end
 end
 
 function machine:mousepressed(x,y,button)
@@ -54,8 +57,4 @@ function machine:inRange(x)
     return true
   end
   return false
-end
-
-function machine:increaseHealth(points)
-  self.health = (self.health+points)
 end
