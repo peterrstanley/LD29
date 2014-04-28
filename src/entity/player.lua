@@ -1,5 +1,5 @@
 player = {}
-player.repair_value = 1
+player.repair_value = 20
 
 
 player.asset = {
@@ -41,7 +41,6 @@ end
 
 function player:draw()
   love.graphics.draw(player.asset.move,player.quad[self.movement],self.x,self.y)
-  --love.graphics.print(self.walk_time,200,500)
 end
 
 function player:update(dt)
@@ -74,9 +73,9 @@ function player:update(dt)
 end
 
 function player:keypressed(key,unicode)
-  if(key == "right") then
+  if(key == "right" or key == "d") then
     self.direction = "right"
-  elseif (key == "left") then
+  elseif (key == "left" or key == "a") then
     self.direction = "left"
   end
 end
